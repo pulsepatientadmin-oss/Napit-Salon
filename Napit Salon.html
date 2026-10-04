@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Napit Salon | Moranhat</title>
+    <!-- Google Fonts & FontAwesome for icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #d4af37; /* Luxury Gold */
+            --primary-glow: rgba(212, 175, 55, 0.3);
+            --dark-bg: #0d0d0d;
+            --card-bg: #181818;
+            --card-border: #2a2a2a;
+            --text-color: #f1f1f1;
+            --text-muted: #b0b0b0;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+        body {
+            background-color: var(--dark-bg);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        header {
+            background: rgba(13, 13, 13, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--card-border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 5%;
+        }
+        .logo {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-shadow: 0 0 10px var(--primary-glow);
+        }
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: 0.3s;
+        }
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+        /* Hero Section */
+        .hero {
+            min-height: 90vh;
+            background: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.85)), url('https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=1400&q=80') center/cover no-repeat;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 100px 20px 40px 20px;
+        }
+        .hero h1 {
+            font-size: 2.8rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        .hero p {
+            font-size: 1.05rem;
+            max-width: 650px;
+            color: var(--text-muted);
+            margin-bottom: 25px;
+        }
+        .btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #d4af37, #aa8c2c);
+            color: #000;
+            padding: 12px 28px;
+            border-radius: 30px;
+            font-weight: 600;
+            text-decoration: none;
+            box-shadow: 0 4px 15px var(--primary-glow);
+            transition: 0.3s;
+        }
+        .btn:hover {
+            transform: translateY(-3px);
+            background: #fff;
+        }
+        /* Sections */
+        section {
+            padding: 70px 6%;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-muted);
+            margin-bottom: 35px;
+            font-size: 0.95rem;
+        }
+        /* About Section */
+        .about-content {
+            background: var(--card-bg);
+            padding: 35px 25px;
+            border-radius: 15px;
+            text-align: center;
+            max-width: 850px;
+            margin: 0 auto;
+            border: 1px solid var(--card-border);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        .about-content p {
+            margin-bottom: 15px;
+            color: var(--text-muted);
+            font-size: 1rem;
+        }
+        .badge {
+            display: inline-block;
+            background: rgba(212, 175, 55, 0.1);
+            color: var(--primary-color);
+            padding: 8px 18px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-top: 15px;
+            border: 1px solid var(--primary-color);
+        }
+        /* Upload Section */
+        .upload-box {
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            border: 2px dashed var(--primary-color);
+            text-align: center;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .upload-box input {
+            color: var(--text-color);
+            margin-top: 10px;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        .gallery-item {
+            height: 250px;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--card-border);
+            position: relative;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+            background: #111;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .delete-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(220, 20, 60, 0.9);
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            z-index: 10;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+        }
+        /* Services Menu & Filters */
+        .search-bar-container {
+            max-width: 500px;
+            margin: 0 auto 25px auto;
+            position: relative;
+        }
+        .search-bar-container input {
+            width: 100%;
+            padding: 12px 20px 12px 45px;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            color: #fff;
+            border-radius: 30px;
+            font-size: 0.95rem;
+            outline: none;
+        }
+        .search-bar-container i {
+            position: absolute;
+            left: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--primary-color);
+        }
+        .filter-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 35px;
+        }
+        .filter-btn {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            color: var(--text-muted);
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+        .filter-btn.active, .filter-btn:hover {
+            background: var(--primary-color);
+            color: #000;
+            border-color: var(--primary-color);
+        }
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+        .menu-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 25px;
+            border: 1px solid var(--card-border);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        }
+        .menu-card h3 {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+            font-size: 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .menu-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            font-size: 0.95rem;
+            border-bottom: 1px dashed rgba(255,255,255,0.05);
+            padding-bottom: 8px;
+            flex-wrap: wrap;
+            gap: 5px;
+        }
+        .menu-item span:last-child {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+        .menu-item small {
+            display: block;
+            width: 100%;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+        }
+        /* Reviews */
+        .reviews-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        .review-card {
+            background: var(--card-bg);
+            padding: 25px;
+            border-radius: 12px;
+            border: 1px solid var(--card-border);
+            position: relative;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        .review-card h4 {
+            color: var(--primary-color);
+            margin-bottom: 5px;
+            font-size: 1rem;
+        }
+        .stars {
+            color: gold;
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+        }
+        .review-form-box {
+            background: var(--card-bg);
+            padding: 30px 25px;
+            border-radius: 15px;
+            max-width: 600px;
+            margin: 0 auto;
+            border: 1px solid var(--card-border);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+        }
+        .form-group {
+            margin-bottom: 18px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 6px;
+            color: var(--text-muted);
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+        .form-group input, .form-group textarea, .form-group select {
+            width: 100%;
+            padding: 10px 14px;
+            background: #111;
+            border: 1px solid var(--card-border);
+            color: #fff;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            outline: none;
+        }
+        /* Contact Section */
+        .contact-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            background: var(--card-bg);
+            padding: 35px 25px;
+            border-radius: 15px;
+            border: 1px solid var(--card-border);
+            justify-content: space-around;
+            align-items: center;
+        }
+        .contact-info p {
+            margin-bottom: 15px;
+            font-size: 1.05rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .contact-info i {
+            color: var(--primary-color);
+            font-size: 1.2rem;
+        }
+        /* Floating WhatsApp - Positioned higher to avoid overlaps */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 20px;
+            background-color: #25d366;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+            z-index: 999;
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #080808;
+            color: var(--text-muted);
+            border-top: 1px solid var(--card-border);
+            font-size: 0.9rem;
+        }
+        @media(max-width: 768px) {
+            .nav-links { display: none; }
+            .hero h1 { font-size: 2.2rem; }
+            header { padding: 10px 4%; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="logo"><i class="fa-solid fa-scissors"></i> Napit Salon</div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#reviews">Reviews</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <a href="tel:08399895172" class="btn" style="padding: 6px 14px; font-size: 0.8rem;"><i class="fa-solid fa-phone"></i> Call</a>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <h1>Napit Salon</h1>
+        <p>A luxurious family salon in Moranhat offering top-tier grooming, hair styling, packages, and skincare treatments</p>
+        <a href="tel:08399895172" class="btn"><i class="fa-solid fa-phone-volume"></i> Call Now: 083998 95172</a>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <h2 class="section-title">About Us</h2>
+        <p class="section-subtitle">Experience luxury and perfection under one roof</p>
+        <div class="about-content">
+            <p>From haircuts and styling to color treatments, highlights, and hair extensions, our experienced stylists are dedicated to creating the perfect look for you</p>
+            <p>We also offer specialized skincare treatments including facials, d-tan, clean-ups, manicures, pedicures, waxing, and threading </p>
+            <div class="badge"><i class="fa-solid fa-heart"></i> LGBTQ+ Friendly Family Salon</div>
+        </div>
+    </section>
+
+    <!-- Gallery & Photo Upload Section -->
+    <section id="gallery">
+        <h2 class="section-title">Salon Gallery & Photos</h2>
+        <p class="section-subtitle">Explore our ambience or upload your own photo</p>
+        
+        <div class="upload-box">
+            <p style="color: var(--primary-color); font-weight: 600; margin-bottom: 5px;"><i class="fa-solid fa-camera"></i> Apni Photo Upload Karein</p>
+            <input type="file" id="photoInput" accept="image/*" onchange="uploadPhoto(event)">
+        </div>
+
+        <div class="gallery-grid" id="galleryGrid">
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=600&q=80" alt="Salon"></div>
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1562322140-8baeececf3df?auto=format&fit=crop&w=600&q=80" alt="Styling"></div>
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1527799820374-dcf8d9d4a388?auto=format&fit=crop&w=600&q=80" alt="Spa"></div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services">
+        <h2 class="section-title">Our Services & Price List</h2>
+        <p class="section-subtitle">Browse through our professional treatments & packages</p>
+
+        <div class="search-bar-container">
+            <i class="fa-solid fa-search"></i>
+            <input type="text" id="serviceSearch" placeholder="Search service (e.g. Silver Package, Facial, Keratin)..." onkeyup="filterServices()">
+        </div>
+
+        <div class="filter-tabs">
+            <button class="filter-btn active" onclick="filterCategory('all', event)">All Services</button>
+            <button class="filter-btn" onclick="filterCategory('packages', event)">Male Packages</button>
+            <button class="filter-btn" onclick="filterCategory('hair', event)">Hair & Spa</button>
+            <button class="filter-btn" onclick="filterCategory('facial', event)">Facial & Cleanup</button>
+            <button class="filter-btn" onclick="filterCategory('body', event)">Mani-Pedi & Body</button>
+        </div>
+
+        <div class="menu-grid" id="menuGrid">
+            <!-- Male Packages -->
+            <div class="menu-card" data-category="packages">
+                <h3><i class="fa-solid fa-crown"></i> Male Packages</h3>
+                <div class="menu-item">
+                    <span>Silver Package</span><span>₹3000</span>
+                    <small>Hair Cut + Beard + Hair Spa + Hair Colour + D-Tan + Insta Facial</small>
+                </div>
+                <div class="menu-item">
+                    <span>Gold Package</span><span>₹5000</span>
+                    <small>Hair Cut + Beard + Hair Spa + Hair Colour + Gold Facial + O3 D-Tan + Manicure + Pedicure</small>
+                </div>
+                <div class="menu-item">
+                    <span>Diamond Package</span><span>₹7000</span>
+                    <small>Detox Hair Cut + Beard + D-Tan + Premium Hair Spa + Diamond Facial + Hair Colour + Crystal Manicure & Pedicure</small>
+                </div>
+            </div>
+
+            <!-- Straightening / Smoothening -->
+            <div class="menu-card" data-category="hair">
+                <h3><i class="fa-solid fa-wand-magic-sparkles"></i> Straightening / Smoothening</h3>
+                <div class="menu-item"><span>Straightening</span><span>₹3800</span></div>
+                <div class="menu-item"><span>Smoothening</span><span>₹4000</span></div>
+                <div class="menu-item"><span>Keratin Treatment</span><span>₹4500</span></div>
+                <div class="menu-item"><span>Kerasmooth</span><span>₹6500</span></div>
+            </div>
+
+            <!-- Hair Spa & Treatment -->
+            <div class="menu-card" data-category="hair">
+                <h3><i class="fa-solid fa-spa"></i> Hair Spa & Treatment</h3>
+                <div class="menu-item"><span>Head Massage</span><span>₹400</span></div>
+                <div class="menu-item"><span>Fibre Clinix Trt</span><span>₹1600</span></div>
+                <div class="menu-item"><span>Anti-Dandruff Treatment</span><span>₹500</span></div>
+                <div class="menu-item"><span>Hair Fall Trt</span><span>₹500</span></div>
+                <div class="menu-item"><span>Hair Spa</span><span>₹800</span></div>
+                <div class="menu-item"><span>L'Oreal Hair Spa</span><span>₹1100</span></div>
+                <div class="menu-item"><span>Colour Protection Hair Spa</span><span>₹1300</span></div>
+                <div class="menu-item"><span>Damage Repair Hair Spa</span><span>₹1300</span></div>
+                <div class="menu-item"><span>Power Spa</span><span>₹2000</span></div>
+                <div class="menu-item"><span>Keratin Spa</span><span>₹2000</span></div>
+                <div class="menu-item"><span>Keratin Gold Spa</span><span>₹2500</span></div>
+            </div>
+            <!-- Facials & Treatments -->
+            <div class="menu-card" data-category="facial">
+                <h3><i class="fa-solid fa-face-smile"></i> Facials & Treatments</h3>
+                <div class="menu-item"><span>Papaya Facial</span><span>₹700</span></div>
+                <div class="menu-item"><span>Mixed Fruit Facial</span><span>₹800</span></div>
+                <div class="menu-item"><span>Gold Facial</span><span>₹1000</span></div>
+                <div class="menu-item"><span>Lotus Hydra/Pura</span><span>₹1200</span></div>
+                <div class="menu-item"><span>Lotus Insta Fair</span><span>₹2000</span></div>
+                <div class="menu-item"><span>Lotus Gold Sheen</span><span>₹2200</span></div>
+                <div class="menu-item"><span>Lotus Preservita</span><span>₹3000</span></div>
+                <div class="menu-item"><span>Lotus Bridal</span><span>₹3500</span></div>
+                <div class="menu-item"><span>Lotus Ultimo</span><span>₹4000</span></div>
+                <div class="menu-item"><span>Lotus Diamond</span><span>₹4000</span></div>
+                <div class="menu-item"><span>Kenpeki (Japanese Professional)</span><span>₹2000</span></div>
+                <div class="menu-item"><span>O3+ Sea Weed / Whitening</span><span>₹3000</span></div>
+                <div class="menu-item"><span>O3+ Anti-Aging Facial</span><span>₹3000</span></div>
+                <div class="menu-item"><span>O3+ Bridal Facial</span><span>₹4000</span></div>
+                <div class="menu-item"><span>O3+ Rubber Mask</span><span>₹1000</span></div>
+                <div class="menu-item"><span>Lifting Trt</span><span>₹1400</span></div>
+                <div class="menu-item"><span>Lotus Acne</span><span>₹1800</span></div>
+                <div class="menu-item"><span>Lotus Pigmentation</span><span>₹2000</span></div>
+                <div class="menu-item"><span>Anti-Ageing</span><span>₹2200</span></div>
+            </div>
+
+            <!-- Clean Ups & D-Tan -->
+            <div class="menu-card" data-category="facial">
+                <h3><i class="fa-solid fa-spray-can-sparkles"></i> Clean Ups, D-Tan & Bleach</h3>
+                <div class="menu-item"><span>Sheet Mask</span><span>₹200</span></div>
+                <div class="menu-item"><span>Fruits Clean Up</span><span>₹500</span></div>
+                <div class="menu-item"><span>Raaga Clean Up</span><span>₹600</span></div>
+                <div class="menu-item"><span>Lotus Clean Up</span><span>₹800</span></div>
+                <div class="menu-item"><span>Gold / Diamond Clean Up</span><span>₹800</span></div>
+                <div class="menu-item"><span>O3+ Clean Up</span><span>₹1500</span></div>
+                <div class="menu-item"><span>Raaga / Oxy D-Tan</span><span>₹450</span></div>
+                <div class="menu-item"><span>O3+ Premium / Lacto D-Tan</span><span>₹600</span></div>
+                <div class="menu-item"><span>Neck D-Tan</span><span>₹250</span></div>
+                <div class="menu-item"><span>Back D-Tan</span><span>₹400</span></div>
+                <div class="menu-item"><span>Hand D-Tan</span><span>₹600</span></div>
+                <div class="menu-item"><span>Body D-Tan</span><span>₹2500</span></div>
+                <div class="menu-item"><span>Face and Neck Bleach</span><span>₹500</span></div>
+                <div class="menu-item"><span>Hands Bleach</span><span>₹600</span></div>
+                <div class="menu-item"><span>Full Body Bleach</span><span>₹2000</span></div>
+            </div>
+
+            <!-- Manicure & Pedicure -->
+            <div class="menu-card" data-category="body">
+                <h3><i class="fa-solid fa-hands-bubbles"></i> Manicure & Pedicure</h3>
+                <div class="menu-item"><span>Deluxe Manicure</span><span>₹600</span></div>
+                <div class="menu-item"><span>Pedipie Manicure</span><span>₹800</span></div>
+                <div class="menu-item"><span>Crystal Manicure</span><span>₹1000</span></div>
+                <div class="menu-item"><span>Deluxe Pedicure</span><span>₹700</span></div>
+                <div class="menu-item"><span>Pedipie (Kenpeki)</span><span>₹900</span></div>
+                <div class="menu-item"><span>Crystal Pedicure</span><span>₹1100</span></div>
+                <div class="menu-item"><span>Heel Peel Treatment</span><span>₹1500</span></div>
+                <div class="menu-item"><span>Heel Peel with Pedicure</span><span>₹2200</span></div>
+            </div>
+
+            <!-- Body Therapy -->
+            <div class="menu-card" data-category="body">
+                <h3><i class="fa-solid fa-hot-tub-person"></i> Body Therapy</h3>
+                <div class="menu-item"><span>Full Body Massage (Oil / Cream For Her)</span><span>₹2500</span></div>
+                <div class="menu-item"><span>Body Polishing</span><span>₹3000</span></div>
+                <div class="menu-item"><span>Premium Body Polishing</span><span>₹7000</span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section id="reviews">
+        <h2 class="section-title">Customer Reviews</h2>
+        <p class="section-subtitle">See what our clients say about us</p>
+        
+        <div class="reviews-container" id="reviewsContainer">
+            <div class="review-card">
+                <h4>Rahul Dey</h4>
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+                <p>Napit Salon is a good salon in Moranhat with a clean and well-maintained ambience. The service is nice, and the staff behavior is friendly</p>
+            </div>
+            <div class="review-card">
+                <h4>Nishant Agarwalla</h4>
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+                <p>Vikram's service is good</p>
+            </div>
+            <div class="review-card">
+                <h4>Priya Sharma</h4>
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+                <p>Amazing hair smoothening and facial services. Highly recommended in Moranhat!</p>
+            </div>
+            <div class="review-card">
+                <h4>Amit Gogoi</h4>
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+                <p>Very professional staff and clean environment. Best family salon experience.</p>
+            </div>
+        </div>
+
+        <!-- Add Review Form -->
+        <div class="review-form-box">
+            <h3 style="color: var(--primary-color); margin-bottom: 20px; text-align: center;">Apna Review Likhein</h3>
+            <div class="form-group">
+                <label>Aapka Naam</label>
+                <input type="text" id="reviewerName" placeholder="Enter your name">
+            </div>
+            <div class="form-group">
+                <label>Rating</label>
+                <select id="reviewerRating">
+                    <option value="5">⭐⭐⭐⭐⭐ (5 Stars)</option>
+                    <option value="4">⭐⭐⭐⭐ (4 Stars)</option>
+                    <option value="3">⭐⭐⭐ (3 Stars)</option>
+                    <option value="2">⭐⭐ (2 Stars)</option>
+                    <option value="1">⭐ (1 Star)</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Aapka Review</label>
+                <textarea id="reviewerText" rows="3" placeholder="Write your experience..."></textarea>
+            </div>
+            <button class="btn" style="width: 100%; cursor: pointer; border: none;" onclick="submitReview()">Submit Review</button>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2 class="section-title">Contact Us</h2>
+        <p class="section-subtitle">Get in touch or visit us today</p>
+        <div class="contact-container">
+            <div class="contact-info">
+                <p><i class="fa-solid fa-location-dot"></i> A. T. Road, Moranhat, Assam 785670</p>
+                <p><i class="fa-solid fa-phone"></i> <a href="tel:08399895172" style="color: var(--primary-color); text-decoration: none;">083998 95172</a></p>
+                <p><i class="fa-solid fa-clock"></i> Open daily: 9:30 AM onwards</p>
+            </div>
+            <div>
+                <a href="tel:08399895172" class="btn"><i class="fa-solid fa-phone-volume"></i> Call Directly</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Floating WhatsApp -->
+    <a href="https://wa.me/918399895172?text=Hi,%20I%20want%20to%20know%20more%20about%20Napit%20Salon%20services." class="whatsapp-float" target="_blank">
+        <i class="fa-brands fa-whatsapp"></i> Chat on WhatsApp
+    </a>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Napit Salon, Moranhat. All Rights Reserved.</p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        let myDeviceId = localStorage.getItem('napit_device_id');
+        if (!myDeviceId) {
+            myDeviceId = 'dev_' + Math.random().toString(36).substring(2) + Date.now();
+            localStorage.setItem('napit_device_id', myDeviceId);
+        }
+
+        window.onload = function() {
+            loadSavedData();
+        };
+
+        function filterServices() {
+            let input = document.getElementById('serviceSearch').value.toLowerCase();
+            let cards = document.getElementsByClassName('menu-card');
+            for (let i = 0; i < cards.length; i++) {
+                let text = cards[i].innerText.toLowerCase();
+                cards[i].style.display = text.includes(input) ? "" : "none";
+            }
+        }
+
+        function filterCategory(category, event) {
+            let buttons = document.getElementsByClassName('filter-btn');
+            for (let btn of buttons) btn.classList.remove('active');
+            event.target.classList.add('active');
+
+            let cards = document.getElementsByClassName('menu-card');
+            for (let card of cards) {
+                if (category === 'all' || card.getAttribute('data-category') === category) {
+                    card.style.display = "";
+                } else {
+                    card.style.display = "none";
+                }
+            }
+        }
+
+        function loadSavedData() {
+            let savedReviews = JSON.parse(localStorage.getItem('napit_user_reviews')) || [];
+            let container = document.getElementById('reviewsContainer');
+            
+            savedReviews.forEach((r, index) => {
+                let deleteButtonHTML = '';
+                if (r.ownerId === myDeviceId) {
+                    deleteButtonHTML = `<button class="delete-btn" onclick="removeUserReview(${index})"><i class="fa-solid fa-trash"></i> Delete</button>`;
+                }
+                
+                container.innerHTML += `
+                    <div class="review-card">
+                        <h4>${r.name}</h4>
+                        <div class="stars">${'⭐'.repeat(r.rating)}</div>
+                        <p>${r.text}</p>
+                        ${deleteButtonHTML}
+                    </div>
+                `;
+            });
+
+            let savedPhotos = JSON.parse(localStorage.getItem('napit_user_photos')) || [];
+            let grid = document.getElementById('galleryGrid');
+            savedPhotos.forEach((p, index) => {
+                let deleteButtonHTML = '';
+                if (p.ownerId === myDeviceId) {
+                    deleteButtonHTML = `<button class="delete-btn" onclick="removeUserPhoto(${index})"><i class="fa-solid fa-trash"></i> Delete</button>`;
+                }
+
+                if(p.imgData) {
+                    grid.innerHTML += `
+                        <div class="gallery-item">
+                            <img src="${p.imgData}" alt="User Upload">
+                            ${deleteButtonHTML}
+                        </div>
+                    `;
+                }
+            });
+        }
+
+        function uploadPhoto(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const base64Image = e.target.result;
+                    let savedPhotos = JSON.parse(localStorage.getItem('napit_user_photos')) || [];
+                    savedPhotos.push({ imgData: base64Image, ownerId: myDeviceId });
+                    localStorage.setItem('napit_user_photos', JSON.stringify(savedPhotos));
+                    location.reload();
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function removeUserPhoto(index) {
+            let savedPhotos = JSON.parse(localStorage.getItem('napit_user_photos')) || [];
+            if(savedPhotos[index].ownerId === myDeviceId) {
+                savedPhotos.splice(index, 1);
+                localStorage.setItem('napit_user_photos', JSON.stringify(savedPhotos));
+                location.reload();
+            } else {
+                alert("Aap kisi aur ki photo delete nahi kar sakte!");
+            }
+        }
+
+        function submitReview() {
+            let name = document.getElementById('reviewerName').value.trim();
+            let rating = document.getElementById('reviewerRating').value;
+            let text = document.getElementById('reviewerText').value.trim();
+
+            if(!name || !text) {
+                alert('Please fill in both your name and review text.');
+                return;
+            }
+
+            let newReview = { name, rating, text, ownerId: myDeviceId };
+            let savedReviews = JSON.parse(localStorage.getItem('napit_user_reviews')) || [];
+            savedReviews.push(newReview);
+            localStorage.setItem('napit_user_reviews', JSON.stringify(savedReviews));
+            location.reload();
+        }
+
+        function removeUserReview(index) {
+            let savedReviews = JSON.parse(localStorage.getItem('napit_user_reviews')) || [];
+            if(savedReviews[index].ownerId === myDeviceId) {
+                savedReviews.splice(index, 1);
+                localStorage.setItem('napit_user_reviews', JSON.stringify(savedReviews));
+                location.reload();
+            } else {
+                alert("Aap kisi aur ka review delete nahi kar sakte!");
+            }
+        }
+    </script>
+</body>
+</html>
